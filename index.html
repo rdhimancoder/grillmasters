@@ -387,6 +387,20 @@
   <div class="toast" id="toast"></div>
 
   <script>
+    // Disable right-click context menu
+  document.addEventListener('contextmenu', event => event.preventDefault());
+
+  // Disable common inspection shortcuts
+  document.addEventListener('keydown', event => {
+    if (
+      event.key === 'F12' ||
+      (event.ctrlKey && (event.key === 'u' || event.key === 'U' || event.key === 's' || event.key === 'S')) ||
+      (event.ctrlKey && event.shiftKey && (event.key === 'I' || event.key === 'i' || event.key === 'J' || event.key === 'j'))
+    ) {
+      event.preventDefault();
+    }
+  });
+    
     const menu = [
       // BURGERS
       {cat:"Burgers", name:"Junior", price:50, img:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=80", desc:"Classic junior veggie burger."},
