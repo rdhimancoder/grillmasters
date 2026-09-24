@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#d91f1f">
+  <title>Grill Masters — Menu</title>
+  <meta name="description" content="Grill Masters — Taste & Health Wrapped Together. Explore our pizzas, momos, burgers, sandwiches, shakes and more.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <style>
+    :root{
+      --red:#e21f26;
+      --red-dark:#a90f16;
+      --red-soft:#fff0ef;
+      --black:#0c0c0c;
+      --black-2:#151515;
+      --cream:#f8f0dd;
+      --cream-2:#fffaf0;
+      --gold:#e4b95b;
+      --muted:#756e63;
+      --white:#fff;
+      --shadow:0 18px 50px rgba(0,0,0,.12);
+      --radius:22px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Inter,system-ui,sans-serif;
+      color:var(--black);
+      background:
+        radial-gradient(circle at 10% 10%,rgba(226,31,38,.05),transparent 25%),
+        linear-gradient(180deg,#fffdf8 0%,#f7efdc 100%);
+      overflow-x:hidden;
+    }
+    a{text-decoration:none;color:inherit}
+    button,input{font:inherit}
+    .container{width:min(1180px,92%);margin:auto}
+
+    /* Top announcement */
+    .topbar{
+      background:var(--red);color:#fff;text-align:center;
+      font-size:12px;font-weight:800;letter-spacing:.08em;
+      padding:9px 15px;text-transform:uppercase;
+    }
+
+    /* Header */
+    header{
+      position:sticky;top:0;z-index:1000;
+      background:rgba(12,12,12,.94);backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px;position:relative}
+    .brand{display:flex;align-items:center;gap:12px;color:#fff}
+    .brand-mark{
+      width:48px;height:48px;border-radius:50%;
+      background:radial-gradient(circle at 50% 65%,#ffd45e 0 15%,#ff7b18 16% 32%,#e21f26 33% 60%,#111 61%);
+      display:grid;place-items:center;border:2px solid #f6d36b;
+      box-shadow:0 0 0 4px rgba(226,31,38,.15);
+      font-size:20px;
+    }
+    .brand-text strong{display:block;font-family:"Bebas Neue";font-size:28px;letter-spacing:.06em;line-height:.85}
+    .brand-text span{font-size:9px;letter-spacing:.18em;color:#e9d8ad;font-weight:800}
+    .navlinks{display:flex;gap:26px;color:#ddd;font-size:13px;font-weight:700}
+    .navlinks a:hover{color:#fff}
+    .nav-right{display:flex;align-items:center;gap:12px}
+    .cart-btn{
+      border:0;background:var(--red);color:#fff;border-radius:999px;
+      padding:12px 17px;font-weight:800;cursor:pointer;
+      display:flex;align-items:center;gap:9px;box-shadow:0 10px 25px rgba(226,31,38,.25);
+    }
+    .cart-count{background:#fff;color:var(--red);width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:11px}
+    .menu-toggle{display:none;background:none;border:0;color:#fff;font-size:23px;cursor:pointer}
+
+    /* Hero */
+    .hero{
+      position:relative;min-height:570px;display:grid;align-items:center;
+      overflow:hidden;background:
+        linear-gradient(90deg,rgba(5,5,5,.98) 0%,rgba(5,5,5,.88) 43%,rgba(5,5,5,.32) 72%,rgba(5,5,5,.75) 100%),
+        url("https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1800&q=85") center/cover;
+    }
+    .hero:after{
+      content:"";position:absolute;inset:auto 0 0;height:100px;
+      background:linear-gradient(transparent,#f7efdc);pointer-events:none;
+    }
+    .hero-inner{position:relative;z-index:2;padding:90px 0 120px;color:#fff}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;color:#ffd16b;font-size:12px;font-weight:900;letter-spacing:.2em;text-transform:uppercase}
+    .eyebrow:before{content:"";width:35px;height:3px;background:var(--red)}
+    .hero h1{
+      font-family:"Bebas Neue";font-size:clamp(70px,10vw,132px);line-height:.82;
+      letter-spacing:.025em;max-width:760px;margin:20px 0 18px;
+    }
+    .hero h1 span{color:var(--red)}
+    .hero p{max-width:560px;color:#ddd;font-size:17px;line-height:1.7}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:9px;
+      padding:14px 20px;border-radius:12px;font-weight:800;border:1px solid transparent;
+      transition:.25s;cursor:pointer
+    }
+    .btn-primary{background:var(--red);color:#fff;box-shadow:0 12px 30px rgba(226,31,38,.25)}
+    .btn-primary:hover{transform:translateY(-2px);background:#f02a31}
+    .btn-outline{border-color:rgba(255,255,255,.3);color:#fff;background:rgba(255,255,255,.06)}
+    .hero-badge{
+      position:absolute;right:8%;bottom:130px;z-index:3;width:155px;height:155px;border-radius:50%;
+      background:var(--red);border:7px solid rgba(255,255,255,.12);
+      display:grid;place-items:center;text-align:center;transform:rotate(-10deg);
+      box-shadow:0 20px 50px rgba(0,0,0,.3)
+    }
+    .hero-badge strong{font-family:"Bebas Neue";font-size:42px;line-height:.8}
+    .hero-badge small{font-weight:900;font-size:10px;letter-spacing:.08em}
+
+    /* Promo */
+    .promo-wrap{margin-top:-38px;position:relative;z-index:5}
+    .promo{
+      background:#121212;color:#fff;border-radius:24px;padding:18px 22px;
+      display:flex;align-items:center;justify-content:space-between;gap:20px;
+      box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.06)
+    }
+    .promo-left{display:flex;align-items:center;gap:14px}
+    .promo-icon{width:46px;height:46px;border-radius:14px;background:var(--red);display:grid;place-items:center}
+    .promo strong{display:block;font-size:16px}.promo span{color:#aaa;font-size:12px}
+    .promo-price{font-family:"Bebas Neue";font-size:38px;color:#ffd45e}
+
+    /* Section headings */
+    .section{padding:90px 0 20px}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:30px}
+    .kicker{color:var(--red);font-weight:900;text-transform:uppercase;font-size:11px;letter-spacing:.2em}
+    .section h2{font-family:"Bebas Neue";font-size:52px;line-height:.9;margin-top:8px}
+    .section-head p{max-width:480px;color:var(--muted);font-size:13px;line-height:1.7}
+
+    /* Search/filter */
+    .menu-tools{position:sticky;top:76px;z-index:20;background:rgba(248,240,221,.92);backdrop-filter:blur(14px);padding:15px 0;border-bottom:1px solid rgba(0,0,0,.07)}
+    .tools-inner{display:flex;gap:12px;align-items:center}
+    .search{
+      flex:1;display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #eadfca;
+      padding:12px 15px;border-radius:14px;box-shadow:0 5px 18px rgba(0,0,0,.04)
+    }
+    .search i{color:#999}.search input{border:0;outline:0;width:100%;background:none}
+    .chips{display:flex;gap:8px;overflow:auto;scrollbar-width:none}
+    .chips::-webkit-scrollbar{display:none}
+    .chip{
+      white-space:nowrap;border:1px solid #dfd2bb;background:#fff;padding:10px 14px;border-radius:999px;
+      cursor:pointer;font-size:12px;font-weight:800;color:#4f4a43
+    }
+    .chip.active{background:var(--red);border-color:var(--red);color:#fff}
+
+    /* Menu */
+    .menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{
+      background:rgba(255,255,255,.72);border:1px solid #eadfca;border-radius:20px;overflow:hidden;
+      transition:.25s;box-shadow:0 8px 30px rgba(67,44,12,.05);display:flex;flex-direction:column
+    }
+    .card:hover{transform:translateY(-5px);box-shadow:0 18px 45px rgba(67,44,12,.12)}
+    .card-img{height:175px;background-size:cover;background-position:center;position:relative}
+    .card-img:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 45%,rgba(0,0,0,.42))}
+    .tag{position:absolute;z-index:2;left:12px;top:12px;background:#fff;color:var(--red);padding:6px 9px;border-radius:8px;font-size:9px;font-weight:900;text-transform:uppercase}
+    .card-body{padding:17px;display:flex;flex-direction:column;flex:1}
+    .card-title{font-size:17px;font-weight:900;margin-bottom:6px}
+    .card-desc{color:#777;font-size:11px;line-height:1.5;min-height:34px}
+    .price-row{margin-top:auto;padding-top:15px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .price{font-family:"Bebas Neue";font-size:27px;color:var(--red);letter-spacing:.02em}
+    .price small{font-family:Inter;font-size:9px;color:#888}
+    .add{
+      border:0;background:#151515;color:#fff;padding:10px 13px;border-radius:10px;cursor:pointer;font-weight:800;font-size:11px
+    }
+    .add:hover{background:var(--red)}
+    .sizes{display:flex;gap:5px;margin-top:12px;flex-wrap:wrap}
+    .size-btn{border:1px solid #ddd0ba;background:#fff;padding:6px 8px;border-radius:7px;font-size:9px;font-weight:800;cursor:pointer}
+    .size-btn.active{background:#151515;color:#fff;border-color:#151515}
+    .empty{grid-column:1/-1;text-align:center;padding:60px;color:#888}
+
+    /* Feature strips */
+    .features{padding:80px 0}
+    .feature-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .feature{background:#111;color:#fff;border-radius:20px;padding:23px;min-height:145px;position:relative;overflow:hidden}
+    .feature:after{content:"";position:absolute;width:80px;height:80px;border-radius:50%;background:var(--red);right:-30px;bottom:-30px;opacity:.8}
+    .feature i{font-size:22px;color:#ffd45e;margin-bottom:18px}
+    .feature strong{display:block;font-size:14px}.feature span{display:block;color:#aaa;font-size:11px;line-height:1.5;margin-top:6px}
+
+    /* About/contact */
+    .about{
+      background:#111;color:#fff;padding:85px 0;position:relative;overflow:hidden
+    }
+    .about:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 85% 30%,rgba(226,31,38,.32),transparent 30%)}
+    .about-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.2fr .8fr;gap:50px;align-items:center}
+    .about h2{font-family:"Bebas Neue";font-size:65px;line-height:.88}
+    .about h2 span{color:var(--red)}
+    .about p{color:#aaa;line-height:1.8;font-size:14px;margin-top:18px;max-width:650px}
+    .contact-box{background:#1c1c1c;border:1px solid #333;border-radius:22px;padding:25px}
+    .contact-line{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid #303030}
+    .contact-line:last-child{border:0}
+    .contact-line i{color:#ffcf55;width:22px;text-align:center;margin-top:2px}
+    .contact-line strong{display:block;font-size:12px}.contact-line span{display:block;color:#999;font-size:11px;margin-top:4px;line-height:1.5}
+
+    footer{background:#090909;color:#777;text-align:center;padding:25px 15px;font-size:11px}
+    footer strong{color:#fff}
+
+    /* Cart drawer */
+    .overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:2000;opacity:0;pointer-events:none;transition:.25s}
+    .overlay.show{opacity:1;pointer-events:auto}
+    .cart-drawer{
+      position:fixed;z-index:2001;right:0;top:0;height:100dvh;width:min(440px,92vw);
+      background:#fffaf0;transform:translateX(105%);transition:.3s;box-shadow:-20px 0 60px rgba(0,0,0,.2);
+      display:flex;flex-direction:column
+    }
+    .cart-drawer.show{transform:translateX(0)}
+    .cart-head{padding:22px;border-bottom:1px solid #eadfca;display:flex;justify-content:space-between;align-items:center}
+    .cart-head h3{font-family:"Bebas Neue";font-size:32px}
+    .close{border:0;background:#eee2cd;width:38px;height:38px;border-radius:50%;cursor:pointer}
+    .cart-items{padding:15px 20px;overflow:auto;flex:1}
+    .cart-item{padding:15px 0;border-bottom:1px solid #eadfca;display:grid;grid-template-columns:1fr auto;gap:10px}
+    .cart-item strong{font-size:13px}.cart-item small{display:block;color:#8a8379;margin-top:4px}
+    .qty{display:flex;align-items:center;gap:8px;margin-top:9px}
+    .qty button{width:27px;height:27px;border:1px solid #d8ccb8;background:#fff;border-radius:7px;cursor:pointer}
+    .remove{border:0;background:none;color:#b22;font-size:11px;cursor:pointer;margin-left:7px}
+    .cart-foot{padding:20px;border-top:1px solid #eadfca;background:#fff}
+    .total{display:flex;justify-content:space-between;font-weight:900;font-size:18px;margin-bottom:13px}
+    .whatsapp{width:100%;background:#19a95b;color:#fff;border:0;border-radius:12px;padding:15px;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
+    .whatsapp:hover{background:#158a4a}
+    .clear{width:100%;border:0;background:#eee7db;color:#555;border-radius:10px;padding:10px;margin-top:8px;cursor:pointer;font-size:11px;font-weight:800}
+    .empty-cart{text-align:center;padding:70px 10px;color:#999}
+    .empty-cart i{font-size:45px;color:#d5c9b5;margin-bottom:14px}
+
+    .toast{
+      position:fixed;left:50%;bottom:24px;z-index:3000;transform:translate(-50%,20px);
+      background:#111;color:#fff;padding:12px 16px;border-radius:12px;font-size:12px;font-weight:800;
+      opacity:0;pointer-events:none;transition:.25s;box-shadow:0 12px 30px rgba(0,0,0,.25)
+    }
+    .toast.show{opacity:1;transform:translate(-50%,0)}
+
+    @media(max-width:900px){
+      .navlinks{
+        display:none;
+        position:absolute;
+        top:100%;
+        left:0;
+        right:0;
+        background:#121212;
+        flex-direction:column;
+        padding:20px;
+        gap:15px;
+        border-bottom:1px solid rgba(255,255,255,.1);
+      }
+      .navlinks.mobile-open{display:flex}
+      .menu-toggle{display:block}
+      .nav{height:68px}
+      .hero{min-height:610px;background-position:60% center}
+      .hero-badge{right:5%;bottom:105px;width:120px;height:120px}.hero-badge strong{font-size:34px}
+      .menu-grid{grid-template-columns:repeat(2,1fr)}
+      .feature-grid{grid-template-columns:repeat(2,1fr)}
+      .about-grid{grid-template-columns:1fr}
+      .menu-tools{top:68px}
+      .tools-inner{display:block}.chips{margin-top:10px}
+    }
+    @media(max-width:620px){
+      .hero h1{font-size:74px}.hero p{font-size:14px;max-width:360px}
+      .hero-badge{display:none}.promo{align-items:flex-start}.promo-price{font-size:30px}
+      .section{padding-top:65px}.section h2{font-size:44px}
+      .section-head{display:block}.section-head p{margin-top:12px}
+      .menu-grid{grid-template-columns:1fr}
+      .card-img{height:190px}
+      .feature-grid{grid-template-columns:1fr 1fr}
+      .feature{padding:18px;min-height:135px}
+      .about h2{font-size:52px}
+      .brand-text strong{font-size:24px}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">🔥 Taste & Health Wrapped Together • Freshly Prepared • Dine-In & Orders</div>
+
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#">
+        <div class="brand-mark">🔥</div>
+        <div class="brand-text">
+          <strong>GRILL MASTERS</strong>
+          <span>TASTE & HEALTH WRAPPED TOGETHER</span>
+        </div>
+      </a>
+      <nav class="navlinks" id="navlinks">
+        <a href="#menu" onclick="closeMobileMenu()">Menu</a>
+        <a href="#specials" onclick="closeMobileMenu()">Specials</a>
+        <a href="#about" onclick="closeMobileMenu()">Contact</a>
+      </nav>
+      <div class="nav-right">
+        <button class="cart-btn" onclick="openCart()"><i class="fa-solid fa-bag-shopping"></i> Cart <span class="cart-count" id="cartCount">0</span></button>
+        <button class="menu-toggle" onclick="toggleMobileMenu()"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="eyebrow">Fresh • Hot • Loaded</div>
+        <h1>GRILL<br><span>MASTERS</span></h1>
+        <p>Big flavours, sizzling grills, loaded burgers and pizzas. Explore the complete Grill Masters menu and build your order in seconds.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#menu"><i class="fa-solid fa-utensils"></i> Explore Menu</a>
+          <a class="btn btn-outline" href="tel:7419902020"><i class="fa-solid fa-phone"></i> Call to Order</a>
+        </div>
+      </div>
+      <div class="hero-badge"><div><strong>140*</strong><small>BURGER + FRIES<br>+ COKE</small></div></div>
+    </section>
+
+    <div class="container promo-wrap">
+      <div class="promo">
+        <div class="promo-left">
+          <div class="promo-icon"><i class="fa-solid fa-burger"></i></div>
+          <div><strong>Burger + Fries + Coke</strong><span>Only for Dining • Ask our team for today's availability</span></div>
+        </div>
+        <div class="promo-price">₹140*</div>
+      </div>
+    </div>
+
+    <section class="section" id="menu">
+      <div class="container">
+        <div class="section-head">
+          <div><div class="kicker">The complete menu</div><h2>WHAT'S COOKING?</h2></div>
+          <p>Pick a category, search a dish, choose your size and add it to your order. Prices transcribed directly from the official Grill Masters menu.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="menu-tools">
+      <div class="container tools-inner">
+        <label class="search"><i class="fa-solid fa-magnifying-glass"></i><input id="search" type="search" placeholder="Search burger, pasta, shake, momos..."></label>
+        <div class="chips" id="chips"></div>
+      </div>
+    </div>
+
+    <section class="section" style="padding-top:35px">
+      <div class="container">
+        <div class="menu-grid" id="menuGrid"></div>
+      </div>
+    </section>
+
+    <section class="features" id="specials">
+      <div class="container">
+        <div class="section-head">
+          <div><div class="kicker">Why Grill Masters</div><h2>MADE FOR CRAVINGS</h2></div>
+        </div>
+        <div class="feature-grid">
+          <div class="feature"><i class="fa-solid fa-fire-flame-curved"></i><strong>Fresh Off The Grill</strong><span>Hot, hearty food made for serious cravings.</span></div>
+          <div class="feature"><i class="fa-solid fa-pizza-slice"></i><strong>Loaded Pizzas</strong><span>From classic margherita to our exotic veg creations.</span></div>
+          <div class="feature"><i class="fa-solid fa-bowl-food"></i><strong>Something For Everyone</strong><span>Burgers, subs, pasta, shakes, wraps, momos and more.</span></div>
+          <div class="feature"><i class="fa-solid fa-phone-volume"></i><strong>Easy Ordering</strong><span>Call 741-990-2020 to place your order directly.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="container about-grid">
+        <div>
+          <div class="kicker">Visit Grill Masters</div>
+          <h2>COME HUNGRY.<br><span>LEAVE HAPPY.</span></h2>
+          <p>Grill Masters brings together loaded pizzas, juicy burgers, crispy pasta, refreshing shakes and indulgent extras — all under one roof. Visit us for dine-in or call for direct orders.</p>
+        </div>
+        <div class="contact-box">
+          <div class="contact-line"><i class="fa-solid fa-location-dot"></i><div><strong>ADDRESS</strong><span>SCF-24, Urban Estate, Near Jaat Dharmshala, Jind - 126102</span></div></div>
+          <div class="contact-line"><i class="fa-solid fa-phone"></i><div><strong>FOR ORDER</strong><span><a href="tel:7419902020">741-990-2020</a></span></div></div>
+          <div class="contact-line"><i class="fa-solid fa-clock"></i><div><strong>DINING</strong><span>Ask the Grill Masters team for current opening hours.</span></div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>© <span id="year"></span> <strong>GRILL MASTERS</strong> • SCF-24, Urban Estate, Jind</footer>
+
+  <div class="overlay" id="overlay" onclick="closeCart()"></div>
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="cart-head"><h3>YOUR ORDER</h3><button class="close" onclick="closeCart()"><i class="fa-solid fa-xmark"></i></button></div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-foot">
+      <div class="total"><span>Total</span><span id="cartTotal">₹0</span></div>
+      <button class="whatsapp" onclick="sendWhatsApp()"><i class="fa-brands fa-whatsapp"></i> Order on WhatsApp</button>
+      <button class="clear" onclick="clearCart()">Clear cart</button>
+    </div>
+  </aside>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const menu = [
+      // BURGERS
+      {cat:"Burgers", name:"Junior", price:50, img:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=80", desc:"Classic junior veggie burger."},
+      {cat:"Burgers", name:"Nik Burger", price:60, img:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=80", desc:"Delicious special burger."},
+      {cat:"Burgers", name:"Texas", price:70, img:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=80", desc:"Texas style seasoned burger."},
+      {cat:"Burgers", name:"Jucy Lucy", price:80, img:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=80", desc:"Juicy, flavor-packed burger."},
+      {cat:"Burgers", name:"Lil Spicy", price:80, img:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=80", desc:"Burger with a gentle spicy kick."},
+      {cat:"Burgers", name:"Paneer Crisp", price:90, img:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=80", desc:"Crispy paneer patty burger."},
+      {cat:"Burgers", name:"Giga Bite", price:90, img:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=80", desc:"Loaded big bite burger."},
+      {cat:"Burgers", name:"Mexican Paneer", price:90, img:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=80", desc:"Mexican seasoned paneer burger."},
+      {cat:"Burgers", name:"Veg. Mountain", price:120, img:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=80", desc:"Towering vegetable burger."},
+      {cat:"Burgers", name:"Paneer Mountain", price:130, img:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=80", desc:"Double paneer mountain burger."},
+      {cat:"Burgers", name:"Cheese Slice (Extra)", price:20, img:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=80", desc:"Add extra cheese slice."},
+
+      // GRILLED SANDWICHES
+      {cat:"Grilled Sandwiches", name:"Warm Up Sandwich", price:100, img:"https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=900&q=80", desc:"4 Pcs — Lightly grilled veg sandwich."},
+      {cat:"Grilled Sandwiches", name:"Mexican Wave", price:120, img:"https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=900&q=80", desc:"4 Pcs — Tangy Mexican spices & veg."},
+      {cat:"Grilled Sandwiches", name:"Cheesy Corn", price:130, img:"https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=900&q=80", desc:"4 Pcs — Sweet corn with melted cheese."},
+      {cat:"Grilled Sandwiches", name:"Pizza Sandwich", price:140, img:"https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=900&q=80", desc:"4 Pcs — Pizza topping stuffed grilled sandwich."},
+      {cat:"Grilled Sandwiches", name:"French Sandwich", price:150, img:"https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=900&q=80", desc:"4 Pcs — Gourmet French style sandwich."},
+      {cat:"Grilled Sandwiches", name:"Mushroom & Corn", price:160, img:"https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=900&q=80", desc:"4 Pcs — Mushroom and sweet corn filling."},
+      {cat:"Grilled Sandwiches", name:"Paneer Tikka Sandwich", price:170, img:"https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=900&q=80", desc:"4 Pcs — Paneer tikka spiced sandwich."},
+
+      // WRAPS
+      {cat:"Wraps", name:"Veg Wrap", price:110, img:"https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=900&q=80", desc:"Fresh vegetable stuffed wrap."},
+      {cat:"Wraps", name:"Mexican Tortilla", price:120, img:"https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=900&q=80", desc:"Spicy Mexican style tortilla wrap."},
+      {cat:"Wraps", name:"Paneer Wrap", price:130, img:"https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=900&q=80", desc:"Soft paneer chunks wrapped in tortilla."},
+      {cat:"Wraps", name:"Paneer Tikka Wrap", price:130, img:"https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=900&q=80", desc:"Paneer tikka spiced wrap."},
+
+      // GARLIC BREAD
+      {cat:"Garlic Bread", name:"Cheese Garlic", price:160, img:"https://images.unsplash.com/photo-1573140247632-f8fd74997d5c?auto=format&fit=crop&w=900&q=80", desc:"Golden garlic bread with melted cheese."},
+      {cat:"Garlic Bread", name:"Exotic Garlic", price:170, img:"https://images.unsplash.com/photo-1573140247632-f8fd74997d5c?auto=format&fit=crop&w=900&q=80", desc:"Topped with exotic herbs and cheese."},
+      {cat:"Garlic Bread", name:"Stuffed Garlic", price:180, img:"https://images.unsplash.com/photo-1573140247632-f8fd74997d5c?auto=format&fit=crop&w=900&q=80", desc:"Stuffed with cheese and veggies."},
+      {cat:"Garlic Bread", name:"Paneer Garlic", price:200, img:"https://images.unsplash.com/photo-1573140247632-f8fd74997d5c?auto=format&fit=crop&w=900&q=80", desc:"Garlic bread topped with paneer & cheese."},
+
+      // CHINESE STARTERS
+      {cat:"Chinese Starters", name:"Manchurian (Dry/Gravy)", price:150, img:"https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=900&q=80", desc:"Classic Manchurian balls in choice of dry or gravy."},
+      {cat:"Chinese Starters", name:"Chilli Potato", price:150, img:"https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=900&q=80", desc:"Crispy potato fingers tossed in chilli sauce."},
+      {cat:"Chinese Starters", name:"Honey Chilli Potato", price:160, img:"https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=900&q=80", desc:"Sweet & spicy crispy honey chilli potatoes."},
+      {cat:"Chinese Starters", name:"Chilli Paneer (Dry/Gravy)", price:160, img:"https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=900&q=80", desc:"Paneer cubes cooked with capsicum and chilli."},
+
+      // NOODLES
+      {cat:"Noodles", name:"Veg. Noodles", price:100, img:"https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=900&q=80", desc:"Classic stir-fried vegetable noodles."},
+      {cat:"Noodles", name:"Schezwan Noodles", price:120, img:"https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=900&q=80", desc:"Spicy Schezwan tossed noodles."},
+      {cat:"Noodles", name:"Haka Noodles", price:120, img:"https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=900&q=80", desc:"Indo-Chinese style Hakka noodles."},
+      {cat:"Noodles", name:"Chilli Noodles", price:140, img:"https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=900&q=80", desc:"Spicy chilli tossed noodles."},
+
+      // MAGGI
+      {cat:"Maggi", name:"Veg Maggi", price:80, img:"https://images.unsplash.com/photo-1612927601601-6638404737ce?auto=format&fit=crop&w=900&q=80", desc:"Hot noodle soup with vegetables."},
+      {cat:"Maggi", name:"Cheese Maggi", price:100, img:"https://images.unsplash.com/photo-1612927601601-6638404737ce?auto=format&fit=crop&w=900&q=80", desc:"Loaded with melted cheese."},
+
+      // SHAKESPEARE
+      {cat:"Shakespeare", name:"Vanilla Shake", price:90, img:"https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=900&q=80", desc:"Classic vanilla thick shake."},
+      {cat:"Shakespeare", name:"Strawberry", price:90, img:"https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=900&q=80", desc:"Fresh strawberry shake."},
+      {cat:"Shakespeare", name:"Blue Heaven", price:100, img:"https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=900&q=80", desc:"Signature blue heaven shake."},
+      {cat:"Shakespeare", name:"Cold Coffee", price:100, img:"https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=900&q=80", desc:"Chilled blended coffee."},
+      {cat:"Shakespeare", name:"Butterscotch Shake", price:110, img:"https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=900&q=80", desc:"Rich butterscotch shake."},
+      {cat:"Shakespeare", name:"Chocolate Shake", price:110, img:"https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=900&q=80", desc:"Decadent chocolate shake."},
+      {cat:"Shakespeare", name:"Black Current Shake", price:110, img:"https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=900&q=80", desc:"Blackcurrant thick shake."},
+      {cat:"Shakespeare", name:"Mystery Shake", price:110, img:"https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=900&q=80", desc:"Special chef mystery shake."},
+      {cat:"Shakespeare", name:"Caramel Coffee", price:110, img:"https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=900&q=80", desc:"Cold coffee with caramel syrup."},
+      {cat:"Shakespeare", name:"Cold Coffee with Ice Cream", price:120, img:"https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=900&q=80", desc:"Cold coffee topped with ice cream scoop."},
+      {cat:"Shakespeare", name:"Coffee Oreo", price:120, img:"https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=900&q=80", desc:"Cold coffee blended with Oreo."},
+      {cat:"Shakespeare", name:"Oreo Smoothie", price:120, img:"https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=900&q=80", desc:"Thick Oreo cookie smoothie."},
+      {cat:"Shakespeare", name:"Kit Kat Shake", price:120, img:"https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=900&q=80", desc:"Kit Kat chocolate shake."},
+      {cat:"Shakespeare", name:"Brownie Shake", price:140, img:"https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=900&q=80", desc:"Blended brownie thick shake."},
+      {cat:"Shakespeare", name:"Ice Cream Scoop( Extra )", price:20, img:"https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=900&q=80", desc:"Add extra ice cream scoop."},
+
+      // FRIES
+      {cat:"Fries", name:"Classic Fries", price:90, img:"https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=900&q=80", desc:"Crispy salted french fries."},
+      {cat:"Fries", name:"Coated Fries", price:100, img:"https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=900&q=80", desc:"Crispy batter coated fries."},
+      {cat:"Fries", name:"Peri Peri Fries", price:120, img:"https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=900&q=80", desc:"Spicy Peri Peri seasoned fries."},
+      {cat:"Fries", name:"Cheese Loaded Fries", price:140, img:"https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=900&q=80", desc:"Fries smothered in liquid cheese."},
+
+      // EGG
+      {cat:"Egg", name:"Egg Burger", price:60, img:"https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=900&q=80", desc:"Fresh egg patty burger."},
+      {cat:"Egg", name:"Mx. Egg Burger", price:70, img:"https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=900&q=80", desc:"Mexican spiced egg burger."},
+      {cat:"Egg", name:"Egg Wrap", price:110, img:"https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=900&q=80", desc:"Fluffy egg wrap with veggies."},
+      {cat:"Egg", name:"Egg Sandwich (4 Pcs.)", price:180, img:"https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=900&q=80", desc:"4 Pcs — Egg stuffed grilled sandwich."},
+
+      // PASTA-LA-VISTA
+      {cat:"Pasta-La-Vista", name:"White Sauce Pasta", price:160, img:"https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=900&q=80", desc:"Creamy white sauce penne pasta."},
+      {cat:"Pasta-La-Vista", name:"Red Sauce Pasta", price:160, img:"https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=900&q=80", desc:"Tangy tomato red sauce pasta."},
+      {cat:"Pasta-La-Vista", name:"Makhani Pasta", price:170, img:"https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=900&q=80", desc:"Rich butter makhani sauce pasta."},
+      {cat:"Pasta-La-Vista", name:"Tandoori Pasta", price:170, img:"https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=900&q=80", desc:"Smoky tandoori sauce pasta."},
+      {cat:"Pasta-La-Vista", name:"Mix Pasta", price:170, img:"https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=900&q=80", desc:"Combination of red and white sauce pasta."},
+
+      // SUBS
+      {cat:"Subs", name:"Veg Sub", price:120, img:"https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=900&q=80", desc:"Fresh vegetable submarine sandwich."},
+      {cat:"Subs", name:"Mexican Sub", price:130, img:"https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=900&q=80", desc:"Mexican salsa & spices sub."},
+      {cat:"Subs", name:"Paneer Crunch Sub", price:140, img:"https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=900&q=80", desc:"Crispy paneer filled sub."},
+      {cat:"Subs", name:"Grilled Paneer Sub", price:150, img:"https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=900&q=80", desc:"Grilled paneer with veggies & sauces."},
+
+      // ICE CREAM
+      {cat:"Ice Cream", name:"Choco Sparkle", price:70, img:"https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=900&q=80", desc:"Chocolate ice cream delight."},
+      {cat:"Ice Cream", name:"Black Current", price:80, img:"https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=900&q=80", desc:"Fruity blackcurrant ice cream."},
+      {cat:"Ice Cream", name:"Butter Scotch", price:80, img:"https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=900&q=80", desc:"Classic butterscotch scoop."},
+      {cat:"Ice Cream", name:"Mystery Sparkle", price:80, img:"https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=900&q=80", desc:"Special surprise flavor ice cream."},
+
+      // SALADS
+      {cat:"Salads", name:"Veg Crunch", price:140, img:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=80", desc:"Fresh crunchy garden salad."},
+      {cat:"Salads", name:"Mexican Salad", price:150, img:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=80", desc:"Mexican seasoned fresh vegetable salad."},
+      {cat:"Salads", name:"Paneer Crunch", price:160, img:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=80", desc:"Salad topped with crispy paneer cubes."},
+      {cat:"Salads", name:"Grilled Paneer Salad", price:160, img:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=80", desc:"Healthy salad with grilled paneer."},
+
+      // BROWNIE WITH ICE CREAM
+      {cat:"Brownie", name:"Classic Brownie", price:120, img:"https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=900&q=80", desc:"Rich chocolate brownie with ice cream."},
+      {cat:"Brownie", name:"Oreo Brownie", price:130, img:"https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=900&q=80", desc:"Oreo crushed brownie with ice cream."},
+      {cat:"Brownie", name:"Almond Brownie", price:130, img:"https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=900&q=80", desc:"Nutty almond brownie with ice cream."},
+      {cat:"Brownie", name:"Kit-Kat Brownie", price:140, img:"https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=900&q=80", desc:"Kit-Kat topped brownie with ice cream."},
+      {cat:"Brownie", name:"Brownie Jar", price:130, img:"https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=900&q=80", desc:"Layered brownie jar dessert."},
+      {cat:"Brownie", name:"Brownie Topping", price:20, img:"https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=900&q=80", desc:"Extra chocolate/fudge topping."},
+
+      // EXTRAS
+      {cat:"Extras", name:"Schezwan Dip", price:20, img:"https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=80", desc:"Spicy Schezwan dip."},
+      {cat:"Extras", name:"Island/Thousand Dip", price:20, img:"https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=80", desc:"Creamy signature dip."},
+      {cat:"Extras", name:"Cheese Dip", price:20, img:"https://images.unsplash.com/photo-1628088062854-d1870b4553da?auto=format&fit=crop&w=900&q=80", desc:"Rich cheesy dip."},
+      {cat:"Extras", name:"Tandoori Dip", price:20, img:"https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?auto=format&fit=crop&w=900&q=80", desc:"Smoky tandoori-style dip."},
+      {cat:"Extras", name:"Chilli Garlic Dip", price:20, img:"https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=900&q=80", desc:"Chilli and garlic kick."},
+      {cat:"Extras", name:"Premium Mayo Dip", price:20, img:"https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=900&q=80", desc:"Smooth premium mayo."},
+
+      // HOT BEVERAGES
+      {cat:"Hot Beverages", name:"Hot Coffee", price:70, img:"https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=80", desc:"Winter season special."},
+
+      // DRINKS
+      {cat:"Drinks", name:"Virgin Mojito", price:70, img:"https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=900&q=80", desc:"Cool, minty and refreshing."},
+      {cat:"Drinks", name:"Peach Mojito", price:70, img:"https://images.unsplash.com/photo-1551538827-9c037cb4f32a?auto=format&fit=crop&w=900&q=80", desc:"Peachy, fizzy and refreshing."},
+      {cat:"Drinks", name:"Blue Mojito", price:70, img:"https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=900&q=80", desc:"Cool blue citrus refresher."},
+      {cat:"Drinks", name:"Water Melon Mojito", price:70, img:"https://images.unsplash.com/photo-1577805947697-89e18249d767?auto=format&fit=crop&w=900&q=80", desc:"Watermelon-forward summer cooler."},
+      {cat:"Drinks", name:"Green Apple", price:70, img:"https://images.unsplash.com/photo-1526318472351-c75fcf070305?auto=format&fit=crop&w=900&q=80", desc:"Crisp green apple cooler."},
+      {cat:"Drinks", name:"Spicy Mango", price:70, img:"https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=900&q=80", desc:"Sweet mango with a spicy twist."},
+      {cat:"Drinks", name:"Peach Ice Tea", price:60, img:"https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=900&q=80", desc:"Chilled peach iced tea."},
+      {cat:"Drinks", name:"Lemon Ice Tea", price:60, img:"https://images.unsplash.com/photo-1499638673689-79a0b5115d87?auto=format&fit=crop&w=900&q=80", desc:"Zesty lemon iced tea."},
+      {cat:"Drinks", name:"Fruit Beer", price:45, img:"https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=900&q=80", desc:"Fruity sparkling cooler."},
+
+      // SPRING ROLL
+      {cat:"Spring Roll", name:"Spring Roll", price:150, img:"https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=80", desc:"Crispy golden spring rolls."},
+      {cat:"Spring Roll", name:"Kurkure Spring Roll", price:160, img:"https://images.unsplash.com/photo-1625398407796-82650a8c1354?auto=format&fit=crop&w=900&q=80", desc:"Crunchy Kurkure-style spring roll."},
+
+      // MOMOS
+      {cat:"Momos", name:"Veg Momos", sizes:{Steamed:100,Fried:110,Kurkure:120}, img:"https://images.unsplash.com/photo-1625220194771-7ebdea0b70b9?auto=format&fit=crop&w=900&q=80", desc:"Vegetable momos — choose your style."},
+      {cat:"Momos", name:"Paneer Momos", sizes:{Steamed:120,Fried:130,Kurkure:140}, img:"https://images.unsplash.com/photo-1625398407796-82650a8c1354?auto=format&fit=crop&w=900&q=80", desc:"Paneer-filled momos — choose your style."},
+
+      // PAN BASED PIZZA
+      {cat:"Pan Based Pizza", name:"Onion", sizes:{S:110,M:150,L:220}, img:"https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=900&q=80", desc:"Classic onion pan pizza."},
+      {cat:"Pan Based Pizza", name:"Capsicum", sizes:{S:110,M:150,L:220}, img:"https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=900&q=80", desc:"Capsicum-loaded pan pizza."},
+      {cat:"Pan Based Pizza", name:"Tomato", sizes:{S:110,M:150,L:220}, img:"https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=900&q=80", desc:"Tomato pan pizza."},
+      {cat:"Pan Based Pizza", name:"Corn", sizes:{S:110,M:150,L:220}, img:"https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=900&q=80", desc:"Sweet corn pan pizza."},
+
+      // PREMIUM VEG PIZZA
+      {cat:"Premium Veg", name:"Cheese Margherita", sizes:{S:170,M:250,L:340}, img:"https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=900&q=80", desc:"Extra cheese available."},
+      {cat:"Premium Veg", name:"Garlic Exotica", sizes:{S:170,M:250,L:350}, img:"https://images.unsplash.com/photo-1594007654729-407eedc4be65?auto=format&fit=crop&w=900&q=80", desc:"Onion, capsicum and red paprika."},
+      {cat:"Premium Veg", name:"Veggie Paradise", sizes:{S:170,M:260,L:370}, img:"https://images.unsplash.com/photo-1593560708920-61dd98c8a70b?auto=format&fit=crop&w=900&q=80", desc:"Onion, capsicum, corn and olive."},
+      {cat:"Premium Veg", name:"Farm House", sizes:{S:170,M:260,L:370}, img:"https://images.unsplash.com/photo-1566843972142-a7fcb70de55a?auto=format&fit=crop&w=900&q=80", desc:"Onion, capsicum, tomato and mushroom."},
+      {cat:"Premium Veg", name:"Achari Paneer", sizes:{S:170,M:270,L:380}, img:"https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=900&q=80", desc:"Paneer, onion, capsicum and jalapeno."},
+      {cat:"Premium Veg", name:"Paneer Tikka Pizza", sizes:{S:170,M:270,L:380}, img:"https://images.unsplash.com/photo-1594007654729-407eedc4be65?auto=format&fit=crop&w=900&q=80", desc:"Onion, capsicum, paneer and tomato."},
+
+      // PIZZA ADD ON
+      {cat:"Pizza Add On", name:"Pizza Topping", sizes:{S:30,M:40,L:50}, img:"https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=900&q=80", desc:"Add a topping to your pizza."},
+      {cat:"Pizza Add On", name:"Extra Cheese", sizes:{S:30,M:40,L:70}, img:"https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=900&q=80", desc:"Extra cheese upgrade."},
+      {cat:"Pizza Add On", name:"Cheese Brust", sizes:{S:50,M:80,L:120}, img:"https://images.unsplash.com/photo-1566843972142-a7fcb70de55a?auto=format&fit=crop&w=900&q=80", desc:"Cheese burst crust."},
+
+      // PANEER DOUBLE
+      {cat:"Paneer Double", name:"Paneer & Onion", sizes:{S:140,M:240,L:330}, img:"https://images.unsplash.com/photo-1566843972142-a7fcb70de55a?auto=format&fit=crop&w=900&q=80", desc:"Paneer and onion loaded pizza."},
+      {cat:"Paneer Double", name:"Paneer & Corn", sizes:{S:140,M:240,L:330}, img:"https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=900&q=80", desc:"Paneer and corn."},
+      {cat:"Paneer Double", name:"Paneer & Capsicum", sizes:{S:140,M:240,L:330}, img:"https://images.unsplash.com/photo-1594007654729-407eedc4be65?auto=format&fit=crop&w=900&q=80", desc:"Paneer and capsicum."},
+      {cat:"Paneer Double", name:"Double Paneer", sizes:{S:150,M:250,L:340}, img:"https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=900&q=80", desc:"Double paneer for extra richness."},
+
+      // VEG DOUBLE
+      {cat:"Veg Double", name:"Onion & Capsicum", sizes:{S:140,M:230,L:320}, img:"https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=900&q=80", desc:"Onion and capsicum."},
+      {cat:"Veg Double", name:"Onion & Tomato", sizes:{S:140,M:230,L:320}, img:"https://images.unsplash.com/photo-1594007654729-407eedc4be65?auto=format&fit=crop&w=900&q=80", desc:"Onion and tomato."},
+      {cat:"Veg Double", name:"Onion & Corn", sizes:{S:140,M:230,L:320}, img:"https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=900&q=80", desc:"Onion and corn."},
+      {cat:"Veg Double", name:"Corn & Capsicum", sizes:{S:140,M:230,L:320}, img:"https://images.unsplash.com/photo-1566843972142-a7fcb70de55a?auto=format&fit=crop&w=900&q=80", desc:"Corn and capsicum."},
+
+      // EXOTIC VEG
+      {cat:"Exotic Veg", name:"Paneer Makhani", price:280, img:"https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=900&q=80", desc:"Paneer, onion, capsicum and green chilli."},
+      {cat:"Exotic Veg", name:"Spicy Touch Pizza", price:300, img:"https://images.unsplash.com/photo-1594007654729-407eedc4be65?auto=format&fit=crop&w=900&q=80", desc:"Onion, capsicum, jalapeno, red paprika and sweet corn."},
+      {cat:"Exotic Veg", name:"Tandoori Paneer", price:310, img:"https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=900&q=80", desc:"Onion, capsicum, paneer and red paprika."},
+      {cat:"Exotic Veg", name:"The Lord of Cheese", price:320, img:"https://images.unsplash.com/photo-1566843972142-a7fcb70de55a?auto=format&fit=crop&w=900&q=80", desc:"Cheesy pizza with onion, paneer and red-yellow bell pepper."},
+      {cat:"Exotic Veg", name:"Grill Masters Special", price:330, img:"https://images.unsplash.com/photo-1594007654729-407eedc4be65?auto=format&fit=crop&w=900&q=80", desc:"Onion, capsicum, paneer, jalapeno dip, olive and sweet corn."}
+    ];
+
+    const cats = ["All", ...new Set(menu.map(x=>x.cat))];
+    let activeCat = "All";
+    let cart = [];
+
+    const money = n => "₹" + Number(n).toLocaleString("en-IN");
+
+    function buildChips(){
+      const el = document.getElementById("chips");
+      el.innerHTML = cats.map(c=>`<button class="chip ${c===activeCat?'active':''}" onclick="setCategory('${c.replace(/'/g, "\\'")}')">${c}</button>`).join("");
+    }
+
+    function cardHTML(item, index){
+      const sizes = item.sizes ? Object.entries(item.sizes) : [];
+      const defaultSize = sizes.length ? sizes[0][0] : null;
+      const sizeButtons = sizes.length ? `<div class="sizes">${sizes.map(([s,p],i)=>`<button class="size-btn ${i===0?'active':''}" data-index="${index}" onclick="chooseSize(${index},'${s}')">${s} ·${money(p)}</button>`).join("")}</div>` : "";
+      const currentPrice = item.price ?? item.sizes[defaultSize];
+      return `<article class="card" data-index="${index}">
+        <div class="card-img" style="background-image:url('${item.img}')">
+          <span class="tag">${item.cat}</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">${item.name}</div>
+          <div class="card-desc">${item.desc || ""}</div>
+          ${sizeButtons}
+          <div class="price-row">
+            <div class="price" id="price-${index}">${money(currentPrice)}${sizes.length ? '<small> / selected size</small>':''}</div>
+            <button class="add" onclick="addItem(${index})"><i class="fa-solid fa-plus"></i> Add</button>
+          </div>
+        </div>
+      </article>`;
+    }
+
+    function render(){
+      const q = document.getElementById("search").value.trim().toLowerCase();
+      const filtered = menu.map((x,i)=>({x,i})).filter(({x}) =>
+        (activeCat==="All" || x.cat===activeCat) &&
+        (!q || `${x.name} ${x.cat} ${x.desc}`.toLowerCase().includes(q))
+      );
+      document.getElementById("menuGrid").innerHTML = filtered.length
+        ? filtered.map(({x,i})=>cardHTML(x,i)).join("")
+        : `<div class="empty"><i class="fa-solid fa-magnifying-glass" style="font-size:32px"></i><br><br>No dishes found. Try another search.</div>`;
+    }
+
+    function setCategory(c){activeCat=c;buildChips();render();}
+    document.getElementById("search").addEventListener("input",render);
+
+    function chooseSize(index,size){
+      const item = menu[index];
+      document.querySelectorAll(`.card[data-index="${index}"] .size-btn`).forEach(b=>b.classList.toggle("active",b.textContent.trim().startsWith(size+" ·")));
+      document.getElementById("price-"+index).innerHTML = `${money(item.sizes[size])}<small> / selected size</small>`;
+      document.querySelector(`.card[data-index="${index}"]`).dataset.size=size;
+    }
+
+    function addItem(index){
+      const item = menu[index];
+      const card = document.querySelector(`.card[data-index="${index}"]`);
+      const size = item.sizes ? (card?.dataset.size || Object.keys(item.sizes)[0]) : null;
+      const price = item.sizes ? item.sizes[size] : item.price;
+      const key = `${index}-${size || "single"}`;
+      const existing = cart.find(x=>x.key===key);
+      if(existing) existing.qty++;
+      else cart.push({key,index,name:item.name,size,price,qty:1});
+      updateCart();
+      showToast(`${item.name}${size ? " ("+size+")":""} added to cart`);
+    }
+
+    function updateCart(){
+      const count = cart.reduce((a,b)=>a+b.qty,0);
+      const total = cart.reduce((a,b)=>a+b.qty*b.price,0);
+      document.getElementById("cartCount").textContent=count;
+      document.getElementById("cartTotal").textContent=money(total);
+      const el=document.getElementById("cartItems");
+      if(!cart.length){
+        el.innerHTML=`<div class="empty-cart"><i class="fa-solid fa-bag-shopping"></i><div>Your cart is empty.</div><small>Add something delicious from the menu.</small></div>`;
+        return;
+      }
+      el.innerHTML=cart.map((x,i)=>`
+        <div class="cart-item">
+          <div><strong>${x.name}</strong><small>${x.size ? x.size+" • ":""}${money(x.price)} each</small>
+            <div class="qty"><button onclick="changeQty(${i},-1)">−</button><b>${x.qty}</b><button onclick="changeQty(${i},1)">+</button><button class="remove" onclick="removeItem(${i})">Remove</button></div>
+          </div>
+          <strong>${money(x.price*x.qty)}</strong>
+        </div>`).join("");
+    }
+
+    function changeQty(i,d){cart[i].qty+=d;if(cart[i].qty<=0)cart.splice(i,1);updateCart();}
+    function removeItem(i){cart.splice(i,1);updateCart();}
+    function clearCart(){cart=[];updateCart();}
+    function openCart(){document.getElementById("overlay").classList.add("show");document.getElementById("cartDrawer").classList.add("show");}
+    function closeCart(){document.getElementById("overlay").classList.remove("show");document.getElementById("cartDrawer").classList.remove("show");}
+
+    function toggleMobileMenu(){
+      document.getElementById("navlinks").classList.toggle("mobile-open");
+    }
+
+    function closeMobileMenu(){
+      document.getElementById("navlinks").classList.remove("mobile-open");
+    }
+
+    function sendWhatsApp(){
+      if(!cart.length){showToast("Add at least one item first");return;}
+      let itemsText = cart.map(x => {
+        const sizeStr = x.size ? ` (${x.size})` : "";
+        return `• ${x.name}${sizeStr} x ${x.qty} = ${money(x.price * x.qty)}`;
+      }).join("\n");
+
+      const total = cart.reduce((a, b) => a + b.qty * b.price, 0);
+      const fullMsg = `My order is...\n${itemsText}\n\nTotal: ${money(total)}`;
+
+      const url = `https://wa.me/917419902020?text=${encodeURIComponent(fullMsg)}`;
+      window.open(url, "_blank");
+    }
+
+    let toastTimer;
+    function showToast(text){
+      const t=document.getElementById("toast");t.textContent=text;t.classList.add("show");
+      clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove("show"),2200);
+    }
+
+    document.getElementById("year").textContent=new Date().getFullYear();
+    buildChips();
+    render();
+    updateCart();
+  </script>
+</body>
+</html>
